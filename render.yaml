@@ -2,8 +2,9 @@ services:
   - type: web
     name: nexus-attendance
     runtime: node
-    buildCommand: npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend
-    startCommand: npm start --prefix backend
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
     healthCheckPath: /api/health
     envVars:
       - key: MONGO_URI

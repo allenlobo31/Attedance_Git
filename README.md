@@ -2,7 +2,7 @@
 
 ## Deploy the backend on Render
 
-This repository includes `render.yaml` for the API service. Create a MongoDB Atlas database first and allow connections from Render (`0.0.0.0/0` in the Atlas network access list, or use a restricted egress setup).
+This repository includes `render.yaml` for the API service. The frontend is deployed separately on Vercel. Create a MongoDB Atlas database first and allow connections from Render (`0.0.0.0/0` in the Atlas network access list, or use a restricted egress setup).
 
 1. In Render, create a Blueprint from this repository and select `render.yaml`.
 2. Set `MONGO_URI`, `VENUE_LAT`, `VENUE_LNG`, `ADMIN_KEY`, and `CLIENT_ORIGIN` when prompted.
