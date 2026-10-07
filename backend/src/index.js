@@ -13,6 +13,7 @@ if (process.env.TRUST_PROXY === 'true') app.set('trust proxy', 1);
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173' }));
 app.use(express.json({ limit: '10kb' }));
 
+app.get('/', (_req, res) => res.json({ ok: true, service: 'Nexus Attendance API' }));
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 app.use('/api/attendance', attendanceRoutes);
 
