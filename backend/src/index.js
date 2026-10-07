@@ -5,12 +5,15 @@ import mongoose from 'mongoose';
 import attendanceRoutes from './routes/attendanceRoutes.js';
 
 const app = express();
+const allowedOrigins = new Set(
+  [process.env.CLIENT_ORIGIN, 'http://localhost:5173', 'https://attedance-git.vercel.app'].filter(Boolean)
+);
 
 // Only trust X-Forwarded-For when explicitly running behind a proxy,
 // otherwise clients could spoof their IP and bypass the lock.
 if (process.env.TRUST_PROXY === 'true') app.set('trust proxy', 1);
 
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173' }));
+app.use(cors({ origin: (origin, callback) => callback(null, !origin || allowedOrigins.has(origin)) }));
 app.use(express.json({ limit: '10kb' }));
 
 app.get('/', (_req, res) => res.json({ ok: true, service: 'Nexus Attendance API' }));

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const API = import.meta.env.VITE_API_URL || '';
+const API = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? '' : 'https://attedance-git.onrender.com');
 
 function getPosition() {
   return new Promise((resolve, reject) => {
