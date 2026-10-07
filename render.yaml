@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: nexus-attendance
+    runtime: node
+    buildCommand: npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend
+    startCommand: npm start --prefix backend
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: TRUST_PROXY
+        value: "true"
+      - key: ENFORCE_LOCATION_LOCK
+        value: "true"
+      - key: VENUE_LAT
+        sync: false
+      - key: VENUE_LNG
+        sync: false
+      - key: ALLOWED_RADIUS_METERS
+        value: "100"
+      - key: MAX_ACCURACY_METERS
+        value: "100"
+      - key: TIMEZONE
+        value: Asia/Kolkata
+      - key: ADMIN_KEY
+        sync: false
